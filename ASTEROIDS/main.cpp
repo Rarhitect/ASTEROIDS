@@ -8,6 +8,9 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
 #include <list>
+#include <chrono>
+#include <thread>
+
 using namespace sf;
 
 const int W = 1200;
@@ -189,13 +192,13 @@ int main()
     app.setFramerateLimit(60);
 
     Texture t1,t2,t3,t4,t5,t6,t7;
-    t1.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/spaceship.png");
-    t2.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/background.jpg");
-    t3.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/explosions/type_C.png");
-    t4.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/rock.png");
-    t5.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/fire_blue.png");
-    t6.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/rock_small.png");
-    t7.loadFromFile("/Users/alyaev.roman/Downloads/asteroids/images/explosions/type_B.png");
+    t1.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/spaceship.png");
+    t2.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/background.jpg");
+    t3.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/explosions/type_C.png");
+    t4.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/rock.png");
+    t5.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/fire_blue.png");
+    t6.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/rock_small.png");
+    t7.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/explosions/type_B.png");
 
     t1.setSmooth(true);
     t2.setSmooth(true);
@@ -212,6 +215,8 @@ int main()
 
 
     std::list<Entity*> entities;
+    
+    int health_points = 3;
 
     for(int i=0;i<15;i++)
     {
@@ -276,15 +281,17 @@ int main()
       if (a->name=="player" && b->name=="asteroid")
        if ( isCollide(a,b) )
            {
-            b->life=false;
+               b->life=false;
 
-            Entity *e = new Entity();
-            e->settings(sExplosion_ship,a->x,a->y);
-            e->name="explosion";
-            entities.push_back(e);
+               Entity *e = new Entity();
+               e->settings(sExplosion_ship,a->x,a->y);
+               e->name="explosion";
+               entities.push_back(e);
 
-            p->settings(sPlayer,W/2,H/2,0,20);
-            p->dx=0; p->dy=0;
+               health_points--;
+               
+                p->settings(sPlayer,W/2,H/2,0,20);
+                p->dx=0; p->dy=0;
            }
      }
 
@@ -319,6 +326,13 @@ int main()
    app.draw(background);
    for(auto i:entities) i->draw(app);
    app.display();
+        
+        if(health_points == 0)
+        {
+            std::this_thread::sleep_for (std::chrono::seconds(2));
+            
+            app.close();
+        }
     }
 
     return 0;
