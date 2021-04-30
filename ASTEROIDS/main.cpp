@@ -454,13 +454,13 @@ public:
   {
     sprite.setPosition(this->x - 110, this->y + 25);
     Texture t;
-    t.loadFromFile("/Resources/images/scoreframe.png");
+    t.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/scoreframe.png");
     sprite.setTexture(t);
     sprite.scale(0.2, 0.13);
     app.draw(sprite);
 
     sf::Font font;
-    if(!font.loadFromFile("/Resources/images/sansation.ttf"))
+    if(!font.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/sansation.ttf"))
     {
       std::cout << "oops!";
     }
@@ -471,6 +471,14 @@ public:
     text.setStyle(sf::Text::Bold);
     app.draw(text);
   }
+    Interface_score(float x_, float y_, Color color_, RenderWindow & app, int score)
+    {
+      x = x_;
+      y = y_;
+      color = color_;
+      name= "interface_score";
+      this->draw(app, score);
+    }
   
 };
 
@@ -489,7 +497,6 @@ public:
     y = y_;
     color = color_;
     name = "interface_health";
-    
   }
 
   void draw(RenderWindow &app, int live = 0)
@@ -498,7 +505,7 @@ public:
     sprite.setPosition(this->x, this->y);
       sprite.setScale(0.5, 0.5);
     Texture t;
-    t.loadFromFile("/Resources/images/healthbar.png");
+    t.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/healthbar.png");
     t.setSmooth(true);
     
     if (live == 3)
@@ -522,14 +529,22 @@ public:
     
 
     sf::Font font;
-    if(!font.loadFromFile("/Resources/images/sansation.ttf"))
+    if(!font.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/sansation.ttf"))
     {
       std::cout << "oops!";
     }
     
     app.draw(text);
   }
-  
+    
+    Interface_health(float x_, float y_, Color color_, RenderWindow & app, int health)
+    {
+      x = x_;
+      y = y_;
+      color = color_;
+      name = "interface_health";
+      this->draw(app, health);
+    }
 };
 
 
@@ -547,14 +562,14 @@ int main()
   app.setFramerateLimit(120);
 
   Texture t1, t2, t3, t4, t5, t6, t7, t8;
-  t1.loadFromFile("/Resources/images/spaceship.png");
-  t2.loadFromFile("/Resources/images/background.jpg");
-  t3.loadFromFile("/Resources/images/explosions/type_C.png");
-  t4.loadFromFile("/Resources/images/rock.png");
-  t5.loadFromFile("/Resources/images/fire_blue.png");
-  t6.loadFromFile("/Resources/images/rock_small.png");
-  t7.loadFromFile("/Resources/images/explosions/type_B.png");
-  t8.loadFromFile("/Resources/images/Cookie.png");
+  t1.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/spaceship.png");
+  t2.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/background.jpg");
+  t3.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/explosions/type_C.png");
+  t4.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/rock.png");
+  t5.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/fire_blue.png");
+  t6.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/rock_small.png");
+  t7.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/explosions/type_B.png");
+  t8.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/Cookie.png");
 
   t1.setSmooth(true);
   t2.setSmooth(true);
@@ -571,27 +586,27 @@ int main()
   Animation sHealer(t8, 0, 0, 150, 150, 1, 0.2, 0.25, 0.25);
 
   SoundBuffer shootBuffer;
-  shootBuffer.loadFromFile("/Resources/images/shot.wav");
+  shootBuffer.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/shot.wav");
   Sound shoot(shootBuffer);
     shoot.setVolume(40);
   
   SoundBuffer healthBuffer;
-  healthBuffer.loadFromFile("/Resources/images/Rise03.wav");
+  healthBuffer.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/Rise03.wav");
   Sound health(healthBuffer);
 
   SoundBuffer explosionBuffer;
-  explosionBuffer.loadFromFile("/Resources/images/Explosion.wav");
+  explosionBuffer.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/Explosion.wav");
   Sound explosion(explosionBuffer);
     explosion.setVolume(30);
   
   SoundBuffer endBuffer;
-  endBuffer.loadFromFile("/Resources/images/gamover.wav");
+  endBuffer.loadFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/gamover.wav");
   Sound end(endBuffer);
     end.setVolume(600);
 
   
   Music music;
-  music.openFromFile("/Resources/images/DOOM.ogg");
+  music.openFromFile("/Users/alyaev.roman/Desktop/Y/ASTEROIDS/Resources/images/DOOM.ogg");
   music.play();
   
     
@@ -756,11 +771,9 @@ int main()
       i->draw(app);
     p->draw(app);
 
-    Interface_score insc(W-100,0, Color(175, 180, 240));
-    insc.draw(app, p->get_scores());
+    Interface_score insc(W-100,0, Color(175, 180, 240), app, p->get_scores());
 
-    Interface_health inhe(0,0, Color(175, 180, 240));
-    inhe.draw(app, p->get_life());
+    Interface_health inhe(0,0, Color(175, 180, 240), app, p->get_life());
    
     app.display();
   }
