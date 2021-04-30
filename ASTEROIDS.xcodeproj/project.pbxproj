@@ -10,7 +10,6 @@
 		2DCF7C4D262C9D3700B59198 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DCF7C4C262C9D3700B59198 /* ResourcePath.mm */; };
 		2DCF7C50262C9D3700B59198 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DCF7C4F262C9D3700B59198 /* main.cpp */; };
 		2DCF7C63262C9D7900B59198 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 2DCF7C62262C9D7900B59198 /* images */; };
-		2DCF7C67262CA40000B59198 /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DCF7C66262CA40000B59198 /* sansation.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +18,6 @@
 		2DCF7C4E262C9D3700B59198 /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		2DCF7C4F262C9D3700B59198 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		2DCF7C62262C9D7900B59198 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		2DCF7C66262CA40000B59198 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sansation.ttf; path = ASTEROIDS/sansation.ttf; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +61,6 @@
 		2DCF7C61262C9D6900B59198 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2DCF7C66262CA40000B59198 /* sansation.ttf */,
 				2DCF7C62262C9D7900B59198 /* images */,
 			);
 			path = Resources;
@@ -128,7 +125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCF7C63262C9D7900B59198 /* images in Resources */,
-				2DCF7C67262CA40000B59198 /* sansation.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
